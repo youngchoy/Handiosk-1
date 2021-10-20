@@ -1,0 +1,53 @@
+.container {
+	background: red;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;	/*nowrap이 기본값, wrap시 반응형으로바뀜 wrap-reverse도 가능*/
+
+	justify-content: space-between; /* item을 어떻게 배치할 지 결정! 위랑 다르게 내용물의 순서는 바뀌지 않는다. space-around, space-evenly, space-between*/
+	align-items: center;
+	/*align-content: space-between;*/
+}
+
+.item {
+	width: 40px;
+	height: 40px;
+	border: 1px solid black;
+}
+
+.item1 {
+	background: #ef9a9a;
+}
+
+.item2 {
+	background: #f48fb1;
+}
+
+.item3 {
+	background: #ce93d8;
+}
+
+.item4 {
+	background: #b39ddb;
+}
+
+.item5 {
+	background: #90caf9;
+}
+
+.item6 {
+	background: #a5d6a7;
+}
+
+.item7 {
+	background: #ef9a9a;
+}
+
+.item8 {
+	background: #ef9a9a;
+}
+
+.item9 {
+	background: #ef9a9a;
+}

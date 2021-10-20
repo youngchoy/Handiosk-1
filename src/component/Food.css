@@ -1,0 +1,19 @@
+.food {
+	background: red;
+	width: 100%;
+	height: 10%;
+	border: 3px solid black;
+	display: flex;
+	flex-direction: row;
+	/* align-items: center; */
+	justify-content: space-between;
+}
+
+.food_img{
+	width: 75px;
+	height: 75px;
+    border-radius: 70%;
+    overflow: hidden;
+	border: 2px solid black;
+	/*display:inline-block;*/
+}
