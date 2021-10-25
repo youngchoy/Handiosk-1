@@ -20,26 +20,31 @@ import { useState } from 'react';
 
 */
 
-function Icon({name, img, socket}) {
-	const [one, setOne] = useState(0);
+const Icon = ({name, img, socket}) => {
+	// const [one, setOne] = useState(0);
+	// let count = 0;
+	// let other = 0;
 
-
-
-	socket.addEventListener("message", (message) => {
-		if (message.data == "1"){
-			setOne(one + 1);
-			console.log("1이 인식됨. 누적수:", one);
-		}
-		//console.log("New message: ", message.data);
-	});
+	// socket.addEventListener("message", (message) => {
+	// 	if (message.data == "one"){
+	// 		setOne(one + 1);
+	// 		console.log("1이 인식됨. 누적수:", one);
+	// 		//console.log("1이 인식됨. 누적수:", ++count);
+	// 		//count++;
+	// 	}
+	// 	// else {
+	// 	// 	console.log("1이 아닌것이 인식되었다.", ++other);
+	// 	// }
+	// 	//console.log("New message: ", message.data);
+	// });
 
 	return (
 	  <div className="icon">
 		<img className="icon_img" src={img} alt="icon" />
 		<br />
-		<button onClick={ () => {setOne(one + 1)}} >plus</button>
+		{/* <button onClick={ () => {setOne(one + 1)}} >plus</button>
 
-		<h2>{one}</h2>
+		<h2></h2> */}
 	  </div>
 	);
 }

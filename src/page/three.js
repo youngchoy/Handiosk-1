@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Food from '../component/Food.js';
 import './three.css';
 
@@ -33,21 +34,40 @@ const order = [
 
 ];
 
-function Menupan({socket}) {
+const Menupan = ({socket}) => {
+	const [one, setOne] = useState(0);
+
+	const Current = () =>{
+		console.log("현재 state:", one);
+	}
+
+	useEffect(() => {
+		socket.addEventListener("message", (message) => {
+			if (message.data == "one"){
+				setOne(v=>v+1);
+			}
+		});
+	  }, []);
+
 	return (
 	<div className="container">
 		<div className="up">
 			<div className="sidebar">
 				<h1>I'm side bar~</h1>
 			</div>
+
 			<div className="menupan">
 				{menu.map((one, idx) => (
 					<Food key={idx} idx={idx+1}
-					name={one.name} img={one.img} cost={one.cost} socket={socket}/>
+					name={one.name} img={one.img} cost={one.cost}/>
 				))}
+				<span>1이 인식된 횟수: {one}</span>
+				<button onClick={() => setOne(v=>v+1)}>증가</button>
+				<button onClick={Current}>현재 값 출력</button>
 				<button>1</button>
 				<button>2</button>
 				<button>3</button>
+
 			</div>
 		</div>
 

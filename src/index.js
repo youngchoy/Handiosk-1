@@ -23,7 +23,6 @@ import reportWebVitals from './reportWebVitals';
 
 // 소켓통신의 client로 연결.
 //const socket = new WebSocket(`ws://${window.location.host}`);
-//const socket = new WebSocket(`ws://127.0.0.1:8000`);
 const socket = new WebSocket(`ws://127.0.0.1:8000`);
 
 socket.addEventListener("open", () => {
@@ -41,10 +40,6 @@ socket.addEventListener("open", () => {
 socket.addEventListener("close", () => {
   console.log("Disconnected from Server ❌");
 });
-
-// setTimeout(() => {
-//   socket.send("hello from the browser!");
-// }, 10000);
 
 ReactDOM.render(
   <React.StrictMode>
