@@ -11,9 +11,7 @@ function Food({name, img, cost, idx, socket}) {
 			<span>{name}</span><br/>
 			<span>₩{cost}</span>
 		</div>
-		<div className="item">
-			<Icon img={`${idx}.png`} socket={socket}/>
-		</div>
+
 	  </div>
 	);
 }

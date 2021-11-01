@@ -1,0 +1,22 @@
+.cart_food {
+	display: flex;
+	flex-direction: row;
+}
+
+.cart_name {
+	width: 40%;
+
+}
+
+.cart_count{
+	width: 20%;
+}
+
+.cart_cost {
+	width: 40%;
+}
+
+.cart_food_img {
+	width: 40px;
+	height: 40px;
+}
