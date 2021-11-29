@@ -1,7 +1,4 @@
 import './App.css';
-import First from './page/first.js';
-import Three from './page/three.js';
-import FlexBox from './page/flexbox.js';
 import AppRouter from './component/router';
 
 function App({socket}) {

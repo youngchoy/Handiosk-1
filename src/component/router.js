@@ -1,9 +1,10 @@
 
 import React, { useState } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import First from "../page/first";
-import Second from "../page/two";
-import Third from "../page/three";
+import One from "../page/first";
+import Two from "../page/two";
+import Three from "../page/three";
+import Four from "../page/four";
 
 const AppRouter = ({socket}) => {
   const [pageNum, setPageNum] = useState(3);
@@ -11,13 +12,16 @@ const AppRouter = ({socket}) => {
     <Router>
 	  <Routes>
 		{(pageNum == 1) &&
-			<Route exact path="/" element={<First socket={socket} setPageNum={setPageNum}/>}/>
+			<Route exact path="/" element={<One socket={socket} setPageNum={setPageNum}/>}/>
 		}
 		{(pageNum == 2) &&
-			<Route exact path="/" element={<Second socket={socket} setPageNum={setPageNum}/>}/>
+			<Route exact path="/" element={<Two socket={socket} setPageNum={setPageNum}/>}/>
 		}
 		{(pageNum == 3) &&
-			<Route exact path="/" element={<Third socket={socket} setPageNum={setPageNum}/>}/>
+			<Route exact path="/" element={<Three socket={socket} setPageNum={setPageNum}/>}/>
+		}
+		{(pageNum == 4) &&
+			<Route exact path="/" element={<Four socket={socket} setPageNum={setPageNum}/>}/>
 		}
 		{/* {(pageNum == 4) &&
 			<Route exact path="/">

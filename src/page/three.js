@@ -5,6 +5,7 @@ import Icon from '../icon.js';
 import ProgressBar from "@ramonak/react-progress-bar";
 import './three.css';
 const menu = [
+
 	{
 		name: "빅맥",
 		img: "burger.png",
@@ -36,12 +37,19 @@ const order = [
 
 ];
 
-const Third = ({socket}) => {
+const Three = ({socket, setPageNum}) => {
+	// 1~5, 휴지통
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
 	const [c, setC] = useState(0);
 	const [d, setD] = useState(0);
 	const [e, setE] = useState(0);
+	const [clear, setClear] = useState(0);
+	const [good, setGood] = useState(0);
+
+	// 메뉴판 페이지, 카테고리 state
+	const [page, setPage] = useState(0);
+	const [category, setCategory] = useState(0);
 
 
 	const [progressList, setProgressList] = useState([0,0,0,0,0]);
@@ -74,6 +82,29 @@ const Third = ({socket}) => {
 				setD(v=>v+1);
 			} else if (message.action == "5"){
 				setE(v=>v+1);
+			} else if (message.action == "O"){
+				setClear(v=>v+1);
+			} else if (message.action == "thumbs up"){
+				setClear(v=>v+1);
+			}
+			else if (message.action == "scroll left"){
+				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
+				if (page == 0)setPage(2);
+				else setPage(v=>v+1);
+			} else if (message.action == "scroll right"){
+				// page를 오른쪽으로 넘깁니다.
+				if (page == 2)setPage(0);
+				else setPage(v=>v-1);
+			}
+			else if (message.action == "scroll up"){
+				// 위 카테고리로 넘깁니다.
+				if (page == 0)setPage(2);
+				else setPage(v=>v+1);
+			}
+			else if (message.action == "scroll down"){
+				// 아래 카테고리로 넘깁니다.
+				if (page == 2)setPage(0);
+				else setPage(v=>v-1);
 			}
 		});
 	  }, []);
@@ -104,6 +135,15 @@ const Third = ({socket}) => {
 			// 첫번째 음식을 장바구니에 넣는다.
 			order.push(menu[4]);
 		}
+		if (clear > 100){
+			setClear(0);
+			// 주문현황을 비운다.
+			order = [];
+		}
+		if (good > 100){
+			setGood(0);
+			setPageNum(4);
+		}
 	},[a,b,c,d,e]);
 
 	return (
@@ -121,14 +161,6 @@ const Third = ({socket}) => {
 					<Food key={idx}
 					name={one.name} img={one.img} cost={one.cost}/>
 				))}
-				{/* <h5>1이 인식된 횟수: {a}</h5>
-				<h5>2이 인식된 횟수: {b}</h5>
-				<h5>3이 인식된 횟수: {c}</h5>
-				<h5>4이 인식된 횟수: {d}</h5>
-				<h5>5이 인식된 횟수: {e}</h5> */}
-
-				{/* <button onClick={() => setA(v=>v+1)}>1 수동증가</button>
-				<button onClick={Current}>현재 값 출력</button> */}
 				<button>1</button>
 				<button>2</button>
 				<button>3</button>
@@ -164,14 +196,36 @@ const Third = ({socket}) => {
 		</div>
 
 		<div className="cart">
-			<h1>장바구니🛒</h1>
-			{order.map((one, idx) => (
+			<div className="title">
+				<div><span>장바구니🛒</span></div>
+				<img src="thumbs up.png"/>
+				<ProgressBar completed={good} />
+
+				<img src="O.png"/>
+				<ProgressBar completed={clear} />
+			</div>
+			<table>
+				<thead>
+						<tr>
+							<td width="10%">이미지</td>
+							<td width="40%">메뉴명</td>
+							<td width="10%">개수</td>
+							<td>가격</td>
+						</tr>
+				</thead>
+				<tbody>
+				{order.map((one, idx) => (
+					<tr>
 					<Item key={idx}
-					name={one.name} img={one.img} cost={one.cost}/>
-			))}
+						name={one.name} img={one.img} cost={one.cost}/>
+					</tr>
+				))}
+				</tbody>
+			</table>
+			<h1>총계</h1>
 		</div>
 	</div>
 	);
 }
 
-export default Third;
+export default Three;

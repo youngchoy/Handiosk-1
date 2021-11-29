@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const Third = ({socket, setPageNum}) => {
+const Two = ({socket, setPageNum}) => {
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
 	const [c, setC] = useState(0);
@@ -63,4 +63,4 @@ const Third = ({socket, setPageNum}) => {
 	);
 }
 
-export default Third;
+export default Two;

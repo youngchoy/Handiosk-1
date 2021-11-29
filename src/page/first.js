@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const First = ({socket, setPageNum}) => {
+const One = ({socket, setPageNum}) => {
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
 
@@ -31,7 +31,7 @@ const First = ({socket, setPageNum}) => {
 	},[a,b]);
 
 	return (
-	  <div className="container">
+	  <div className="first">
 		<div className="first_title">
 			<h1>손으로 모양을 만들어 시작하세요</h1>
 		</div>
@@ -53,4 +53,4 @@ const First = ({socket, setPageNum}) => {
 	);
 }
 
-export default First;
+export default One;
