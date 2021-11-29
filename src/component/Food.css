@@ -1,8 +1,7 @@
 .food {
-	background: red;
 	width: 100%;
 	height: 17%;
-	border: 3px solid black;
+	border: 2px solid black;
 	display: flex;
 	flex-direction: row;
 	/* align-items: center; */

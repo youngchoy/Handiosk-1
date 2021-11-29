@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Food from '../component/Food.js';
-import Icon from '../icon.js';
 import Item from "../component/Item.js"
+import Icon from '../icon.js';
 import ProgressBar from "@ramonak/react-progress-bar";
 import './three.css';
-
 const menu = [
 	{
 		name: "빅맥",
@@ -37,12 +36,26 @@ const order = [
 
 ];
 
-const Menupan = ({socket}) => {
+const Third = ({socket}) => {
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
 	const [c, setC] = useState(0);
 	const [d, setD] = useState(0);
 	const [e, setE] = useState(0);
+
+
+	const [progressList, setProgressList] = useState([0,0,0,0,0]);
+	//Add item
+	const addJoinPeople = (e) =>{
+		let name = e.target.value; setProgressList([...progressList, name]);
+	};
+
+	//Delete item
+	const RemovePeople = (e) =>{
+		let name = e.target.value; setProgressList(progressList.filter((e)=>(e !== name)))
+	};
+
+
 
 	const Current = () =>{
 		console.log("현재 state:", a);
@@ -50,15 +63,16 @@ const Menupan = ({socket}) => {
 
 	useEffect(() => {
 		socket.addEventListener("message", (message) => {
-			if (message.data == "one"){
+			console.log(message);
+			if (message.action == "1"){
 				setA(v=>v+1);
-			} else if (message.data == "2"){
+			} else if (message.action == "2"){
 				setB(v=>v+1);
-			} else if (message.data == "3"){
+			} else if (message.action == "3"){
 				setC(v=>v+1);
-			} else if (message.data == "4"){
+			} else if (message.action == "4"){
 				setD(v=>v+1);
-			} else if (message.data == "5"){
+			} else if (message.action == "5"){
 				setE(v=>v+1);
 			}
 		});
@@ -97,6 +111,9 @@ const Menupan = ({socket}) => {
 		<div className="up">
 			<div className="sidebar">
 				<h1>I'm side bar~</h1>
+				<button>1번 카테고리</button>
+				<button>2번 카테고리</button>
+				<button>3번 카테고리</button>
 			</div>
 
 			<div className="menupan">
@@ -110,23 +127,39 @@ const Menupan = ({socket}) => {
 				<h5>4이 인식된 횟수: {d}</h5>
 				<h5>5이 인식된 횟수: {e}</h5> */}
 
-				<button onClick={() => setA(v=>v+1)}>1 수동증가</button>
-				<button onClick={Current}>현재 값 출력</button>
+				{/* <button onClick={() => setA(v=>v+1)}>1 수동증가</button>
+				<button onClick={Current}>현재 값 출력</button> */}
 				<button>1</button>
 				<button>2</button>
 				<button>3</button>
 			</div>
-			<div className="icon">
-				<Icon img="1.png"/>
-				<ProgressBar completed={a} />
-				<Icon img="2.png"/>
-				<ProgressBar completed={b} />
-				<Icon img="3.png"/>
-				<ProgressBar completed={c} />
-				<Icon img="4.png"/>
-				<ProgressBar completed={d} />
-				<Icon img="5.png"/>
-				<ProgressBar completed={e} />
+			{/* <Menu /> */}
+			<div className="icons">
+				<div className="icon">
+					{/* <Icon img="1.png"/> */}
+					<img src="1.png"/>
+					<ProgressBar completed={a} />
+				</div>
+				<div className="icon">
+					{/* <Icon img="2.png"/> */}
+					<img src="2.png"/>
+					<ProgressBar completed={b} />
+				</div>
+				<div className="icon">
+					{/* <Icon img="3.png"/> */}
+					<img src="3.png"/>
+					<ProgressBar completed={c} />
+				</div>
+				<div className="icon">
+					{/* <Icon img="4.png"/> */}
+					<img src="4.png"/>
+					<ProgressBar completed={d} />
+				</div>
+				<div className="icon">
+					{/* <Icon img="5.png"/> */}
+					<img src="5.png"/>
+					<ProgressBar completed={e} />
+				</div>
 			</div>
 		</div>
 
@@ -141,4 +174,4 @@ const Menupan = ({socket}) => {
 	);
 }
 
-export default Menupan;
+export default Third;

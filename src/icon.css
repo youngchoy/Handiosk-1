@@ -1,20 +1,17 @@
-.icon {
-	/* width: 150px;
-    height: 150px; */
-	/* width: 25%;
-	height: 25%;
-    border-radius: 80%;
-    overflow: hidden;
-	background: #BDBDBD; */
+.icons {
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+	/* justify-content: center; */
+	height: 100%;
 }
 
-.icon_img {
-	width: 40px;
-	height: 40px;
-    border-radius: 70%;
+.icon img {
+	/* width: 40px;
+	height: 40px; */
     overflow: hidden;
+    border-radius: 70%;
 	border: 4px solid black;
-	/* width: 100%;
-    height: 100%;
-    object-fit: cover; */
+	height: 50%
+    /* object-fit: cover; */
 }

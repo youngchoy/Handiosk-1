@@ -66,7 +66,7 @@ async def accept(websocket, path):
             elif sum(fingers) == 1:  # 숫자 1
                 cv2.putText(hand_cam, "1", (int(h / 2), 700), cv2.FONT_ITALIC, 5, (255, 255, 255), 2, cv2.LINE_AA)
                 count = count + 1
-                await websocket.send("one")
+                await websocket.send("1")
                 print("1을", count, "번 보냈습니다.")
             elif sum(fingers) == 2:  # 숫자 2
                 cv2.putText(hand_cam, "2", (int(h / 2), 700), cv2.FONT_ITALIC, 5, (255, 255, 255), 2, cv2.LINE_AA)
