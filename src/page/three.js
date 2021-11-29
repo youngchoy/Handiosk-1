@@ -58,17 +58,17 @@ const Three = ({socket, setPageNum}) => {
 			if(a > 0)
 				setA(v=>v-1);
 			if(b > 0)
-				setA(v=>v-1);
+				setB(v=>v-1);
 			if(c > 0)
-				setA(v=>v-1);
+				setC(v=>v-1);
 			if(d > 0)
-				setA(v=>v-1);
+				setD(v=>v-1);
 			if(e > 0)
-				setA(v=>v-1);
+				setE(v=>v-1);
 			if(clear > 0)
-				setA(v=>v-1);
+				setClear(v=>v-1);
 			if(good > 0)
-				setA(v=>v-1);
+				setGood(v=>v-1);
 		}, 500);
 
 		socket.addEventListener("message", (message) => {
