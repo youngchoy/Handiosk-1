@@ -51,25 +51,26 @@ const Three = ({socket, setPageNum}) => {
 	const [page, setPage] = useState(0);
 	const [category, setCategory] = useState(0);
 
-
-	const [progressList, setProgressList] = useState([0,0,0,0,0]);
-	//Add item
-	const addJoinPeople = (e) =>{
-		let name = e.target.value; setProgressList([...progressList, name]);
-	};
-
-	//Delete item
-	const RemovePeople = (e) =>{
-		let name = e.target.value; setProgressList(progressList.filter((e)=>(e !== name)))
-	};
-
-
-
-	const Current = () =>{
-		console.log("현재 state:", a);
-	}
-
 	useEffect(() => {
+
+		// 인식되지 않고있는 것들은 0.5초마다 1씩 낮춘다.
+		setInterval(function(){
+			if(a > 0)
+				setA(v=>v-1);
+			if(b > 0)
+				setA(v=>v-1);
+			if(c > 0)
+				setA(v=>v-1);
+			if(d > 0)
+				setA(v=>v-1);
+			if(e > 0)
+				setA(v=>v-1);
+			if(clear > 0)
+				setA(v=>v-1);
+			if(good > 0)
+				setA(v=>v-1);
+		}, 500);
+
 		socket.addEventListener("message", (message) => {
 			console.log(message);
 			if (message.action == "1"){

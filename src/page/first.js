@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 
-const One = ({socket, setPageNum}) => {
+const One = ({socket, setPageNum, setOrder}) => {
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
 
@@ -22,10 +22,12 @@ const One = ({socket, setPageNum}) => {
 	useEffect(() => {
 		if (a > 100){
 			setA(0);
+			setOrder(...{"takeout":1});
 			setPageNum(2);
 		}
 		if (b > 100){
 			setB(0);
+			setOrder(...{"takeout":0});
 			setPageNum(2);
 		}
 	},[a,b]);
