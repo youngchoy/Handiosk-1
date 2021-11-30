@@ -162,7 +162,7 @@ const menu2 = [
 	},
 	{
 		name: "짜장면(곱빼기)",
-		img: "짜장면(곱빼기).png",
+		img: "짜장면.png",
 		cost: 6500
 	},
 	{
@@ -225,7 +225,7 @@ const yangsik = [
 	},
 	{
 		name: "페퍼로니 피자",
-		img: "페퍼로니 피자.png",
+		img: "페퍼로니피자.png",
 		cost: 550000
 	},
 	{
@@ -418,49 +418,61 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			} else if (message.data == "thumbs up"){
 				setGood(v=>v+1);
 			}
-			else if (message.data == "scroll left"){
+			else if (message.data == "scroll left1"){
 				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
 				setPage(v => (v<=0) ? setPage(2) : setPage(v-1));
-			} else if (message.data == "scroll right"){
+			} else if (message.data == "scroll right1"){
 				// page를 오른쪽으로 넘깁니다.
 				setPage(v => (v>=2) ? setPage(0) : setPage(v+1));
 			}
-			else if (message.data == "scroll up"){
+			else if (message.data == "scroll left"){
 				// 위 카테고리로 넘깁니다.
-				setPage(v => (v<=0) ? setPage(3) : setPage(v-1));
+				setCategory(v => (v<=0) ? setCategory(3) : setCategory(v-1));
 			}
-			else if (message.data == "scroll down"){
+			else if (message.data == "scroll right"){
 				// 아래 카테고리로 넘깁니다.
-				setPage(v => (v>=3) ? setPage(0) : setPage(v+1));
+				setCategory(v => (v>=3) ? setCategory(0) : setCategory(v+1));
 			}
 		});
 	  }, []);
 
 	useEffect(() => {
+		// menu == 한식, menu1 == 중식, menu2 == 음료, yangsik == 양식 => category
+		var currentmenu;
+		if(category == 0)
+			currentmenu = menu;
+		else if(category == 1)
+			currentmenu = menu2;
+		else if(category == 2)
+			currentmenu = yangsik;
+		else if(category == 3)
+			currentmenu = menu3;
+
+
 		if (a > 100){
 			setA(0);
-			if(menu.length > page*5+0)
-				pushOrder(menu[page * 5 + 0]);
+			if(currentmenu.length > page*5+0)	// 13  > 2번째페이지 4번째음식 == 2*5 + 3 = 12
+				pushOrder(currentmenu[page * 5 + 0]);
 		}
 		if (b > 100){
 			setB(0);
-			if(menu.length > page*5+1)
-				pushOrder(menu[page * 5 + 1]);
+			if(currentmenu.length > page*5+1)
+				pushOrder(currentmenu[page * 5 + 1]);
 		}
 		if (c > 100){
 			setC(0);
-			if(menu.length > page*5+2)
-				pushOrder(menu[page * 5 + 2]);
+			if(currentmenu.length > page*5+2)
+				pushOrder(currentmenu[page * 5 + 2]);
 		}
 		if (d > 100){
 			setD(0);
-			if(menu.length > page*5+3)
-				pushOrder(menu[page * 5 + 3]);
+			if(currentmenu.length > page*5+3)
+				pushOrder(currentmenu[page * 5 + 3]);
 		}
 		if (e > 100){
 			setE(0);
-			if(menu.length > page*5+4)
-				pushOrder(menu[page * 5 + 4]);
+			if(currentmenu.length > page*5+4)
+				pushOrder(currentmenu[page * 5 + 4]);
 		}
 		if (clear > 100){
 			setClear(0);
