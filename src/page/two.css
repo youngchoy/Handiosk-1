@@ -1,8 +1,9 @@
 .two {
 	height: 100vh;
-	background-color: pink;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .one_third {
@@ -14,8 +15,5 @@
 }
 
 .one_third img {
-	height: 60%;
-	border-radius: 70%;
-	border: 4px solid black;
-	background-color: white;
+	height: 50%;
 }

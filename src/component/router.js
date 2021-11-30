@@ -7,13 +7,15 @@ import Three from "../page/three";
 import Four from "../page/four";
 
 const AppRouter = ({socket}) => {
-  const [pageNum, setPageNum] = useState(3);
+  const [pageNum, setPageNum] = useState(1);
+  const [takeout, setTakeout] = useState(false);
+  const [orderNum, setOrderNum] = useState(0);
   const [order, setOrder] = useState([]);
   return (
     <Router>
 	  <Routes>
 		{(pageNum == 1) &&
-			<Route exact path="/" element={<One socket={socket} setPageNum={setPageNum} setOrder={setOrder}/>}/>
+			<Route exact path="/" element={<One socket={socket} setPageNum={setPageNum} setTakeout={setTakeout}/>}/>
 		}
 		{(pageNum == 2) &&
 			<Route exact path="/" element={<Two socket={socket} setPageNum={setPageNum} setOrder={setOrder}/>}/>
@@ -22,13 +24,8 @@ const AppRouter = ({socket}) => {
 			<Route exact path="/" element={<Three socket={socket} setPageNum={setPageNum} setOrder={setOrder}/>}/>
 		}
 		{(pageNum == 4) &&
-			<Route exact path="/" element={<Four socket={socket} setPageNum={setPageNum} order={order}/>}/>
+			<Route exact path="/" element={<Four setPageNum={setPageNum} order={order} takeout={takeout} order={order} orderNum={orderNum} setOrderNum={setOrderNum}/>}/>
 		}
-		{/* {(pageNum == 4) &&
-			<Route exact path="/">
-              <four />
-            </Route>
-		} */}
       </Routes>
     </Router>
   );

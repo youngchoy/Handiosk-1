@@ -1,6 +1,5 @@
 .first {
 	height: 100vh;
-	background-color: pink;
 	display: flex;
 	flex-direction: column;
 }
@@ -18,14 +17,11 @@
 	align-items: center;
 	justify-content: center;
 	height: 40%;
-
 }
 
 .first img {
 	height: 60%;
 	border-radius: 70%;
-	border: 4px solid black;
-	background-color: white;
 }
 
 .first_down {

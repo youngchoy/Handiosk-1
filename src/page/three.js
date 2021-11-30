@@ -1,95 +1,10 @@
 import { useEffect, useState } from 'react';
 import Food from '../component/Food.js';
 import Item from "../component/Item.js"
-import Icon from '../icon.js';
-import ProgressBar from "@ramonak/react-progress-bar";
-import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbarWithChildren, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './three.css';
 import { dbService } from '../firebase.js';
-import { arrayOf } from 'prop-types';
-
-// 5 * 3
-// const menu = [
-// 	{
-// 		name: "빅맥",
-// 		img: "burger.png",
-// 		cost: 5900
-// 	},
-// 	{
-// 		name: "짜장면",
-// 		img: "짜장면.png",
-// 		cost: 5500
-// 	},
-// 	{
-// 		name: "김밥",
-// 		img: "김밥.png",
-// 		cost: 2000
-// 	},
-// 	{
-// 		name: "피자",
-// 		img: "피자.png",
-// 		cost: 14000
-// 	},
-// 	{
-// 		name: "라면",
-// 		img: "라면.png",
-// 		cost: 3000
-// 	},
-// 	//
-// 	{
-// 		name: "아메리카노",
-// 		img: "아메리카노.png",
-// 		cost: 4000
-// 	},
-// 	{
-// 		name: "빅맥",
-// 		img: "burger.png",
-// 		cost: 5900
-// 	},
-// 	{
-// 		name: "아메리카노",
-// 		img: "아메리카노.png",
-// 		cost: 4000
-// 	},
-// 	{
-// 		name: "라면",
-// 		img: "라면.png",
-// 		cost: 3000
-// 	},
-// 	{
-// 		name: "아메리카노",
-// 		img: "아메리카노.png",
-// 		cost: 4000
-// 	},
-// 	//
-// 	{
-// 		name: "빅맥",
-// 		img: "burger.png",
-// 		cost: 5900
-// 	},
-// 	{
-// 		name: "짜장면",
-// 		img: "짜장면.png",
-// 		cost: 5500
-// 	},
-// 	{
-// 		name: "아메리카노",
-// 		img: "아메리카노.png",
-// 		cost: 4000
-// 	},
-// 	{
-// 		name: "피자",
-// 		img: "피자.png",
-// 		cost: 14000
-// 	},
-// 	{
-// 		name: "라면",
-// 		img: "라면.png",
-// 		cost: 3000
-// 	}
-// ];
 
 const menu = [
 	{
@@ -318,7 +233,6 @@ const order = [
 ];
 
 const Three = ({socket, setPageNum, setOrder}) => {
-	const [fbmenu,setFbmenu] = useState([]);
 	// 1~5, 휴지통
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
@@ -332,12 +246,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	const [page, setPage] = useState(0);
 	const [category, setCategory] = useState(0);
 
-	const getMenu = async() => {
-		const mymenu = await dbService.collection("menu").get();
-		mymenu.forEach(doc => {
-			setFbmenu((prev) => [doc.data(), ...prev]);
-		});
-	}
 	const submitnew = async() => {
 		await dbService.collection("menu").add({
 			createdAt: Date.now(),
@@ -345,7 +253,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			cost : 6000
 		})
 	}
-
 	const resetProgress = () => {
 		setA(0);
 		setB(0);
@@ -378,28 +285,16 @@ const Three = ({socket, setPageNum, setOrder}) => {
 		});
 		return total;
 	}
-	// const fuck = () => {
-	// 	console.log(category);
-	// }
 	useEffect(async() => {
-		getMenu();
-		// 인식되지 않고있는 것들은 0.5초마다 1씩 낮춘다.
-		// setInterval(function(){
-		// 	if(a > 0)
-		// 		setA(v=>v-1);
-		// 	if(b > 0)
-		// 		setB(v=>v-1);
-		// 	if(c > 0)
-		// 		setC(v=>v-1);
-		// 	if(d > 0)
-		// 		setD(v=>v-1);
-		// 	if(e > 0)
-		// 		setE(v=>v-1);
-		// 	if(clear > 0)
-		// 		setClear(v=>v-1);
-		// 	if(good > 0)
-		// 		setGood(v=>v-1);
-		// }, 500);
+		setInterval(()=>{
+			setA(v=>(v>0) ? v-2 : v);
+			setB(v=>(v>0) ? v-2 : v);
+			setC(v=>(v>0) ? v-2 : v);
+			setD(v=>(v>0) ? v-2 : v);
+			setE(v=>(v>0) ? v-2 : v);
+			setGood(v=>(v>0) ? v-2 : v);
+			setClear(v=>(v>0) ? v-2 : v);
+		}, 500);
 
 		socket.addEventListener("message", (message) => {
 			console.log(message);
@@ -429,7 +324,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				// 위 카테고리로 넘깁니다.
 				setCategory(v => (v<=0) ? setCategory(3) : setCategory(v-1));
 			}
-			else if (message.data == "scroll right"){
+			else if (message.data == "scroll down"){
 				// 아래 카테고리로 넘깁니다.
 				setCategory(v => (v>=3) ? setCategory(0) : setCategory(v+1));
 			}
@@ -496,8 +391,8 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				<div className="category">{(category == 1) ? ">" : ""}중식</div>
 				<div className="category">{(category == 2) ? ">" : ""}양식</div>
 				<div className="category">{(category == 3) ? ">" : ""}음료</div>
-				c:{category} <br/>
-				p:{page}
+				{/* c:{category} <br/>
+				p:{page} */}
 			</div>
 
 			<div className="menupan">
@@ -522,9 +417,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 
 			<div className="icons">
 				<div className="icon">
-					{/* <Icon img="1.png"/> */}
-					{/* <img src="1.png"/>
-					<ProgressBar completed={a} /> */}
 					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={a}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
@@ -535,9 +427,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					</div>
 				</div>
 				<div className="icon">
-					{/* <Icon img="2.png"/> */}
-					{/* <img src="2.png"/>
-					<ProgressBar completed={b} /> */}
 					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={b}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="2.png" alt="doge" />
@@ -548,9 +437,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					</div>
 				</div>
 				<div className="icon">
-					{/* <Icon img="3.png"/> */}
-					{/* <img src="3.png"/>
-					<ProgressBar completed={c} /> */}
 					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={c}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="3.png" alt="doge" />
@@ -561,9 +447,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					</div>
 				</div>
 				<div className="icon">
-					{/* <Icon img="4.png"/> */}
-					{/* <img src="4.png"/>
-					<ProgressBar completed={d} /> */}
 					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={d}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="4.png" alt="doge" />
@@ -574,9 +457,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					</div>
 				</div>
 				<div className="icon">
-					{/* <Icon img="5.png"/> */}
-					{/* <img src="5.png"/>
-					<ProgressBar completed={e} /> */}
 					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={e}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="5.png" alt="doge" />
@@ -589,18 +469,30 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			</div>
 		</div>
 		<div className="Zone">
-			<div className="block">a</div>
-			<div className="block">a</div>
-			<div className="block">a</div>
+			{(page == 0) ? (<div className="ablock"> 1 </div>) : (<div className="bblock"> 1 </div>)}
+			{(page == 1) ? (<div className="ablock"> 2 </div>) : (<div className="bblock"> 2 </div>)}
+			{(page == 2) ? (<div className="ablock"> 3 </div>) : (<div className="bblock"> 3 </div>)}
 		</div>
 		<div className="cart">
 			<div className="cart_title">
 				<div><span>장바구니🛒</span></div>
-				<img src="thumbs up.png"/>
-				<ProgressBar completed={good} />
+				<div style={{ width: 50, height: 50 }}>
+				<CircularProgressbarWithChildren value={good}>
+					<img style={{ width: 50, height: 50, marginTop: -5 }} src="thumbs up.png" alt="doge" />
+					<div style={{ fontSize: 12, marginTop: -5 }}>
+						<strong>{good}%</strong>
+					</div>
+				</CircularProgressbarWithChildren>
+				</div>
 
-				<img src="O.png"/>
-				<ProgressBar completed={clear} />
+				<div style={{ width: 50, height: 50}}>
+				<CircularProgressbarWithChildren value={clear}>
+					<img style={{ width: 50, height: 50, marginTop: -5 }} src="o.png" alt="doge" />
+					<div style={{ fontSize: 12, marginTop: -5 }}>
+						<strong>{clear}%</strong>
+					</div>
+				</CircularProgressbarWithChildren>
+				</div>
 			</div>
 			<div>
 				{order.map((one, idx) => (
