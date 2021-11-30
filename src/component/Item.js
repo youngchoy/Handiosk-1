@@ -1,7 +1,7 @@
 import './Item.css';
 
 
-function Item({name, img, cost}) {
+function Item({name, img, count, cost}) {
 	return (
 	  <div className="cart_food">
 		<div className="img">
@@ -11,10 +11,13 @@ function Item({name, img, cost}) {
 			{name}
 		</div>
 		<div className="cart_count">
-			1
+			{count}
 		</div>
 		<div className="cart_cost">
 			<span>₩{cost}</span>
+		</div>
+		<div className="cart_cost">
+			<span>₩{cost * count}</span>
 		</div>
 	  </div>
 	);

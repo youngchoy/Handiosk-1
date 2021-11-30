@@ -9,12 +9,12 @@ import { dbService } from '../firebase.js';
 const Four = ({socket, setPageNum, order}) => {
 
 	useEffect(async () => {
-		dbService.collection("orders").add({
-			order,
-			createdAt: Date.now(),
-		})
+		// dbService.collection("orders").add({
+		// 	order,
+		// 	createdAt: Date.now(),
+		// })
 		// 5초 뒤에 첫 화면으로 이동한다.
-		setTimeout(setPageNum(1), 1000 * 5);
+		//setTimeout(setPageNum(0), 1000 * 5);
 	}, []);
 
 	return (

@@ -8,6 +8,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './three.css';
 import { dbService } from '../firebase.js';
+import { arrayOf } from 'prop-types';
 
 // 5 * 3
 const menu = [
@@ -96,19 +97,6 @@ const order = [
 
 const Three = ({socket, setPageNum, setOrder}) => {
 	const [fbmenu,setFbmenu] = useState([]);
-	const getMenu = async() => {
-		const mymenu = await dbService.collection("menu").get();
-		mymenu.forEach(doc => {
-			setFbmenu((prev) => [doc.data(), ...prev]);
-		});
-	}
-	const submitnew = async() => {
-		await dbService.collection("menu").add({
-			createdAt: Date.now(),
-			name : "짜장면",
-			cost : 6000
-		})
-	}
 	// 1~5, 휴지통
 	const [a, setA] = useState(0);
 	const [b, setB] = useState(0);
@@ -122,6 +110,52 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	const [page, setPage] = useState(2);
 	const [category, setCategory] = useState(0);
 
+	const getMenu = async() => {
+		const mymenu = await dbService.collection("menu").get();
+		mymenu.forEach(doc => {
+			setFbmenu((prev) => [doc.data(), ...prev]);
+		});
+	}
+	const submitnew = async() => {
+		await dbService.collection("menu").add({
+			createdAt: Date.now(),
+			name : "짜장면",
+			cost : 6000
+		})
+	}
+
+	const resetProgress = () => {
+		setA(0);
+		setB(0);
+		setC(0);
+		setD(0);
+		setE(0);
+		setGood(0);
+		setClear(0);
+	}
+	const pushOrder = (menu) => {
+		var idx = order.findIndex(x => x.name === menu.name);
+		// 현재 주문목록에 없음
+		if(idx === -1){
+			var food = menu;
+			food['count'] = 1;
+			order.push(food);
+		}
+		// 현재 주문목록에 동일물품이 존재하는 경우
+		else{
+			order.map((value) => {
+				if(value.name === menu.name)
+					value.count++;
+			});
+		}
+	}
+	const getTotal = () =>{
+		var total = 0;
+		order.map(one => {
+			total += one.count * one.cost;
+		});
+		return total;
+	}
 	useEffect(async() => {
 		getMenu();
 		// 인식되지 않고있는 것들은 0.5초마다 1씩 낮춘다.
@@ -157,7 +191,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			} else if (message.data == "O"){
 				setClear(v=>v+1);
 			} else if (message.data == "thumbs up"){
-				setOrder(...[order]);
+				setGood(v=>v+1);
 			}
 			else if (message.data == "scroll left"){
 				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
@@ -184,48 +218,45 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	useEffect(() => {
 		if (a > 100){
 			setA(0);
-			// 첫번째 음식을 장바구니에 넣는다.
-			order.push(menu[page * 5 + 0]);
+			pushOrder(menu[page * 5 + 0]);
 		}
 		if (b > 100){
 			setB(0);
-			// 첫번째 음식을 장바구니에 넣는다.
-			order.push(menu[page * 5 + 1]);
+			pushOrder(menu[page * 5 + 1]);
 		}
 		if (c > 100){
 			setC(0);
-			// 첫번째 음식을 장바구니에 넣는다.
-			order.push(menu[page * 5 + 2]);
+			pushOrder(menu[page * 5 + 2]);
 		}
 		if (d > 100){
 			setD(0);
-			// 첫번째 음식을 장바구니에 넣는다.
-			order.push(menu[page * 5 + 3]);
+			pushOrder(menu[page * 5 + 3]);
 		}
 		if (e > 100){
 			setE(0);
-			// 첫번째 음식을 장바구니에 넣는다.
-			order.push(menu[page * 5 + 4]);
+			pushOrder(menu[page * 5 + 4]);
 		}
 		if (clear > 100){
 			setClear(0);
 			// 주문현황을 비운다.
-			order = [];
+			while(order.length != 0)
+				order.pop();
 		}
 		if (good > 100){
-			setGood(0);
-			setPageNum(4);
+			resetProgress();
+			console.log(order);
+			setPageNum(v=>v+1);
 		}
-	},[a,b,c,d,e]);
+	},[a,b,c,d,e,clear,good]);
 
 	return (
 	<div className="container">
 		<div className="up">
 			<div className="sidebar">
-				<h1>I'm side bar~</h1>
-				<button>1번 카테고리</button>
-				<button>2번 카테고리</button>
-				<button>3번 카테고리</button>
+				<div>한식</div>
+				<div>중식</div>
+				<div>양식</div>
+				<div>음료</div>
 			</div>
 
 			<div className="menupan">
@@ -237,7 +268,6 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				<button>2</button>
 				<button>3</button>
 			</div>
-			{/* <Menu /> */}
 			<div className="icons">
 				<div className="icon">
 					{/* <Icon img="1.png"/> */}
@@ -287,10 +317,10 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			<div>
 				{order.map((one, idx) => (
 						<Item key={idx}
-							name={one.name} img={one.img} cost={one.cost}/>
+							name={one.name} img={one.img} count={one.count} cost={one.cost}/>
 				))}
 			</div>
-			<h1>총계</h1>
+			<h1>총계 {getTotal()}</h1>
 		</div>
 	</div>
 	);
