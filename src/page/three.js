@@ -91,6 +91,22 @@ const menu = [
 	}
 ];
 
+const menu2 = [
+	{
+		name: "짜장면",
+		img: "짜장면.png",
+		cost: 5500
+	}
+]
+
+const menu3 = [
+	{
+		name: "김밥",
+		img: "김밥.png",
+		cost: 2000
+	}
+]
+
 const order = [
 
 ];
@@ -188,7 +204,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				setD(v=>v+1);
 			} else if (message.data == "5"){
 				setE(v=>v+1);
-			} else if (message.data == "O"){
+			} else if (message.data == "o"){
 				setClear(v=>v+1);
 			} else if (message.data == "thumbs up"){
 				setGood(v=>v+1);
@@ -204,13 +220,13 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			}
 			else if (message.data == "scroll up"){
 				// 위 카테고리로 넘깁니다.
-				if (page == 0)setPage(2);
-				else setPage(v=>v+1);
+				if (category == 0)setCategory(4);
+				else setCategory(v=>v+1);
 			}
 			else if (message.data == "scroll down"){
 				// 아래 카테고리로 넘깁니다.
-				if (page == 2)setPage(0);
-				else setPage(v=>v-1);
+				if (category == 4)setCategory(0);
+				else setCategory(v=>v-1);
 			}
 		});
 	  }, []);
@@ -254,58 +270,99 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	<div className="container">
 		<div className="up">
 			<div className="sidebar">
-				<div>한식</div>
-				<div>중식</div>
-				<div>양식</div>
-				<div>음료</div>
+				<div className="category">{(category == 0) ? ">" : ""}한식</div>
+				<div className="category">{(category == 1) ? ">" : ""}중식</div>
+				<div className="category">{(category == 2) ? ">" : ""}양식</div>
+				<div className="category">{(category == 3) ? ">" : ""}음료</div>
 			</div>
 
 			<div className="menupan">
-				{menu.map((one, idx) => (
+				{(category==0) && menu.map((one, idx) => (
 					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
 					name={one.name} img={one.img} cost={one.cost}/>
 				))}
-				<button>1</button>
-				<button>2</button>
-				<button>3</button>
+				{(category==1) && menu2.map((one, idx) => (
+					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
+					name={one.name} img={one.img} cost={one.cost}/>
+				))}
+				{(category==2) && menu3.map((one, idx) => (
+					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
+					name={one.name} img={one.img} cost={one.cost}/>
+				))}
 			</div>
 			<div className="icons">
 				<div className="icon">
 					{/* <Icon img="1.png"/> */}
-					<img src="1.png"/>
-					<ProgressBar completed={a} />
-					{/* <div style={{ width: 65, height: 65 }}>
+					{/* <img src="1.png"/>
+					<ProgressBar completed={a} /> */}
+					<div style={{ width: 65, height: 65 }}>
 						<CircularProgressbarWithChildren value={a}>
 							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
 							<div style={{ fontSize: 12, marginTop: -5 }}>
-								<strong>{a}%</strong> mate
+								<strong>{a}%</strong>
 							</div>
-						</CircularProgressbarWithChildren>;
-					</div> */}
+						</CircularProgressbarWithChildren>
+					</div>
 				</div>
 				<div className="icon">
 					{/* <Icon img="2.png"/> */}
-					<img src="2.png"/>
-					<ProgressBar completed={b} />
+					{/* <img src="2.png"/>
+					<ProgressBar completed={b} /> */}
+					<div style={{ width: 65, height: 65 }}>
+						<CircularProgressbarWithChildren value={a}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+							<div style={{ fontSize: 12, marginTop: -5 }}>
+								<strong>{a}%</strong>
+							</div>
+						</CircularProgressbarWithChildren>
+					</div>
 				</div>
 				<div className="icon">
 					{/* <Icon img="3.png"/> */}
-					<img src="3.png"/>
-					<ProgressBar completed={c} />
+					{/* <img src="3.png"/>
+					<ProgressBar completed={c} /> */}
+					<div style={{ width: 65, height: 65 }}>
+						<CircularProgressbarWithChildren value={a}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+							<div style={{ fontSize: 12, marginTop: -5 }}>
+								<strong>{a}%</strong>
+							</div>
+						</CircularProgressbarWithChildren>
+					</div>
 				</div>
 				<div className="icon">
 					{/* <Icon img="4.png"/> */}
-					<img src="4.png"/>
-					<ProgressBar completed={d} />
+					{/* <img src="4.png"/>
+					<ProgressBar completed={d} /> */}
+					<div style={{ width: 65, height: 65 }}>
+						<CircularProgressbarWithChildren value={a}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+							<div style={{ fontSize: 12, marginTop: -5 }}>
+								<strong>{a}%</strong>
+							</div>
+						</CircularProgressbarWithChildren>
+					</div>
 				</div>
 				<div className="icon">
 					{/* <Icon img="5.png"/> */}
-					<img src="5.png"/>
-					<ProgressBar completed={e} />
+					{/* <img src="5.png"/>
+					<ProgressBar completed={e} /> */}
+					<div style={{ width: 65, height: 65 }}>
+						<CircularProgressbarWithChildren value={a}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+							<div style={{ fontSize: 12, marginTop: -5 }}>
+								<strong>{a}%</strong>
+							</div>
+						</CircularProgressbarWithChildren>
+					</div>
 				</div>
 			</div>
 		</div>
-
+		<div className="Zone">
+			<div className="block">a</div>
+			<div className="block">a</div>
+			<div className="block">a</div>
+		</div>
 		<div className="cart">
 			<div className="cart_title">
 				<div><span>장바구니🛒</span></div>

@@ -26,6 +26,7 @@ const One = ({socket, setPageNum, setOrder}) => {
 		if (a > 100){
 			setA(0);
 			//setOrder(...["Takeout"]);
+			setOrder(...{})
 			setPageNum(2);
 		}
 		if (b > 100){
