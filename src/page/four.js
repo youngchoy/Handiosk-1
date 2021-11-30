@@ -6,16 +6,17 @@ import { dbService } from '../firebase.js';
 
 
 
-const Four = ({setPageNum, order, takeout, orderNum, setOrderNum}) => {
+const Four = ({setPageNum, order, takeout, orderNum, setOrderNum, setOrder}) => {
 
 	useEffect(async () => {
-		setOrderNum(v=>v+1);
-		dbService.collection("orders").add({
-			orderNum,
+		await setOrderNum(v=>v+1);
+		await dbService.collection("orders").add({
+			orderNum: orderNum+1,
 			takeout,
 			order,
 			createdAt: Date.now(),
 		})
+		await setOrder([]);
 		// 5초 뒤에 첫 화면으로 이동한다.
 		// 1 2 3 4
 		setTimeout(()=>setPageNum(v=>v-3), 1000 * 10);

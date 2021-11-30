@@ -24,7 +24,7 @@ const AppRouter = ({socket}) => {
 			<Route exact path="/" element={<Three socket={socket} setPageNum={setPageNum} setOrder={setOrder}/>}/>
 		}
 		{(pageNum == 4) &&
-			<Route exact path="/" element={<Four setPageNum={setPageNum} order={order} takeout={takeout} order={order} orderNum={orderNum} setOrderNum={setOrderNum}/>}/>
+			<Route exact path="/" element={<Four setPageNum={setPageNum} order={order} takeout={takeout} order={order} orderNum={orderNum} setOrderNum={setOrderNum} setOrder={setOrder}/>}/>
 		}
       </Routes>
     </Router>

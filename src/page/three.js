@@ -377,8 +377,12 @@ const Three = ({socket, setPageNum, setOrder}) => {
 		}
 		if (good > 100){
 			resetProgress();
-			console.log(order);
 			setOrder(...[order]);
+			setTimeout(()=>{
+				// 주문현황을 비운다.
+				while(order.length != 0)
+					order.pop();
+			},1000);
 			setPageNum(v=>v+1);
 		}
 	},[a,b,c,d,e,clear,good]);

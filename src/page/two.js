@@ -32,11 +32,13 @@ const Two = ({socket, setPageNum}) => {
 		// }
 		if (b > 100){
 			setB(0);
+			setC(0);
 			setPageNum(3);
 		}
 		if (c > 100){
-			setPageNum(3);
 			setB(0);
+			setC(0);
+			setPageNum(3);
 		}
 	},[a,b,c]);
 
