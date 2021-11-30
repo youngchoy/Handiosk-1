@@ -497,7 +497,11 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
 					name={one.name} img={one.img} cost={one.cost}/>
 				))}
-				{(category==2) && menu3.map((one, idx) => (
+				{(category==2) && yangsik.map((one, idx) => (
+					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
+					name={one.name} img={one.img} cost={one.cost}/>
+				))}
+				{(category==3) && menu3.map((one, idx) => (
 					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
 					name={one.name} img={one.img} cost={one.cost}/>
 				))}
