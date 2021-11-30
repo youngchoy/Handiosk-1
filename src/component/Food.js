@@ -7,8 +7,10 @@ function Food({name, img, cost, idx, socket}) {
 		<div className="item">
 			<img className="food_img" src={img} alt="icon"/>
 		</div>
-		<div className="item">
-			<span>{name}</span><br/>
+		<div className="item_name">
+			<span>{name}</span>
+		</div>
+		<div className="item_cost">
 			<span>₩{cost}</span>
 		</div>
 

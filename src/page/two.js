@@ -12,11 +12,11 @@ const Two = ({socket, setPageNum}) => {
 
 	useEffect(() => {
 		socket.addEventListener("message", (message) => {
-			if (message.action == "scroll right"){
+			if (message.data == "scroll right"){
 				setA(v=>v+1);
-			} else if (message.action == "o"){
+			} else if (message.data == "o"){
 				setB(v=>v+1);
-			} else if (message.action == "thumbs up"){
+			} else if (message.data == "thumbs up"){
 				setC(v=>v+1);
 			}
 		});
@@ -38,7 +38,7 @@ const Two = ({socket, setPageNum}) => {
 	},[a,b,c]);
 
 	return (
-	  <div className="container">
+	  <div className="two">
 		<div className="one_third">
 			{/* <Icon img="Ok_guide.png"/> */}
 			<img src="Ok_guide.png"/>

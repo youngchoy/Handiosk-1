@@ -11,9 +11,9 @@ const One = ({socket, setPageNum, setOrder}) => {
 
 	useEffect(() => {
 		socket.addEventListener("message", (message) => {
-			if (message.action == "thumbs up"){
+			if (message.data == "thumbs up"){
 				setA(v=>v+1);
-			} else if (message.action == "thumbs down"){
+			} else if (message.data == "thumbs down"){
 				setB(v=>v+1);
 			}
 		});
@@ -22,12 +22,12 @@ const One = ({socket, setPageNum, setOrder}) => {
 	useEffect(() => {
 		if (a > 100){
 			setA(0);
-			setOrder(...{"takeout":1});
+			//setOrder(...["Takeout"]);
 			setPageNum(2);
 		}
 		if (b > 100){
 			setB(0);
-			setOrder(...{"takeout":0});
+			//setOrder(...["Notakeout"]);
 			setPageNum(2);
 		}
 	},[a,b]);
@@ -48,7 +48,7 @@ const One = ({socket, setPageNum, setOrder}) => {
 		<div className="first_down">
 			{/* <Icon img="Thumbs down.png" completed={b}/> */}
 			<img src="Thumbs down.png"/>
-			<ProgressBar completed={a} />
+			<ProgressBar completed={b} />
 			<h2>매장식사</h2>
 		</div>
 	  </div>

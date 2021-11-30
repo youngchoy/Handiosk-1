@@ -17,14 +17,6 @@ socket.addEventListener("open", () => {
   console.log("Connected to Server ✅");
 });
 
-// message.data : "spider motion detected"
-// one, two, three
-// socket.addEventListener("message", (message) => {
-//   if (message.data == "1")
-//     console.log("one is detected: ", message.data);
-//   console.log("New message: ", message.data);
-// });
-
 socket.addEventListener("close", () => {
   console.log("Disconnected from Server ❌");
 });

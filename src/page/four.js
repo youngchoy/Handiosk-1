@@ -2,12 +2,17 @@ import Icon from '../icon.js';
 import ProgressBar from '@ramonak/react-progress-bar';
 import './four.css';
 import { useEffect, useState } from 'react';
+import { dbService } from '../firebase.js';
 
 
 
-const Four = ({socket, setPageNum}) => {
+const Four = ({socket, setPageNum, order}) => {
 
-	useEffect(() => {
+	useEffect(async () => {
+		dbService.collection("orders").add({
+			order,
+			createdAt: Date.now(),
+		})
 		// 5초 뒤에 첫 화면으로 이동한다.
 		setTimeout(setPageNum(1), 1000 * 5);
 	}, []);

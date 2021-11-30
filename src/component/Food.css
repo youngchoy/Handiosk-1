@@ -17,3 +17,21 @@
 	border: 2px solid black;
 	/*display:inline-block;*/
 }
+
+.item_name {
+	align-items: center;
+}
+
+.item_name span{
+	font-size: 30px;
+	display:inline-block;
+	padding-top: 10px;
+	/* align-items: center; */
+}
+
+.item_cost span{
+	font-size: 30px;
+	display:inline-block;
+	padding-top: 10px;
+	/* align-items: center; */
+}
