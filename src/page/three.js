@@ -35,7 +35,7 @@ const menu = [
 	{
 		name: "라면",
 		img: "라면.png",
-		cost: "3000"
+		cost: 3000
 	},
 	//
 	{
@@ -56,7 +56,7 @@ const menu = [
 	{
 		name: "라면",
 		img: "라면.png",
-		cost: "3000"
+		cost: 3000
 	},
 	{
 		name: "아메리카노",
@@ -87,7 +87,7 @@ const menu = [
 	{
 		name: "라면",
 		img: "라면.png",
-		cost: "3000"
+		cost: 3000
 	}
 ];
 
@@ -245,6 +245,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 		if (good > 100){
 			resetProgress();
 			console.log(order);
+			setOrder(...[order]);
 			setPageNum(v=>v+1);
 		}
 	},[a,b,c,d,e,clear,good]);

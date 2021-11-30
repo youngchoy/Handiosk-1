@@ -7,7 +7,7 @@ import Three from "../page/three";
 import Four from "../page/four";
 
 const AppRouter = ({socket}) => {
-  const [pageNum, setPageNum] = useState(3);
+  const [pageNum, setPageNum] = useState(1);
   const [order, setOrder] = useState([]);
   return (
     <Router>

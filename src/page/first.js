@@ -2,6 +2,9 @@ import Icon from '../icon.js';
 import ProgressBar from '@ramonak/react-progress-bar';
 import './first.css';
 import { useEffect, useState } from 'react';
+import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 
 
@@ -42,6 +45,14 @@ const One = ({socket, setPageNum, setOrder}) => {
 			{/* <Icon img="Thumbs up.png"/> */}
 			<img src="Thumbs up.png"/>
 			<ProgressBar completed={a} />
+			{/* <div style={{ width: 70, height: 70 }}>
+				<CircularProgressbarWithChildren value={a}>
+					<img style={{ width: 50, height: 50, marginTop: -5 }} src="1.png" alt="doge" />
+					<div style={{ fontSize: 12, marginTop: -5 }}>
+						<strong>{a}%</strong> mate
+					</div>
+				</CircularProgressbarWithChildren>;
+			</div> */}
 			<h2>포장하기</h2>
 		</div>
 
