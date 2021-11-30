@@ -420,22 +420,18 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			}
 			else if (message.data == "scroll left"){
 				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
-				if (page == 0)setPage(v=>v+2);
-				else setPage(v=>v+1);
+				setPage(v => (v<=0) ? setPage(2) : setPage(v-1));
 			} else if (message.data == "scroll right"){
 				// page를 오른쪽으로 넘깁니다.
-				if (page == 2)setPage(v=>v-2);
-				else setPage(v=>v-1);
+				setPage(v => (v>=2) ? setPage(0) : setPage(v+1));
 			}
 			else if (message.data == "scroll up"){
 				// 위 카테고리로 넘깁니다.
-				if (category === 0)setCategory(4);
-				else setCategory(v=>v-1);
+				setPage(v => (v<=0) ? setPage(3) : setPage(v-1));
 			}
 			else if (message.data == "scroll down"){
 				// 아래 카테고리로 넘깁니다.
-				if (category === 4)setCategory(0);
-				else setCategory(v=>v+1);
+				setPage(v => (v>=3) ? setPage(0) : setPage(v+1));
 			}
 		});
 	  }, []);
@@ -443,23 +439,28 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	useEffect(() => {
 		if (a > 100){
 			setA(0);
-			pushOrder(menu[page * 5 + 0]);
+			if(menu.length > page*5+0)
+				pushOrder(menu[page * 5 + 0]);
 		}
 		if (b > 100){
 			setB(0);
-			pushOrder(menu[page * 5 + 1]);
+			if(menu.length > page*5+1)
+				pushOrder(menu[page * 5 + 1]);
 		}
 		if (c > 100){
 			setC(0);
-			pushOrder(menu[page * 5 + 2]);
+			if(menu.length > page*5+2)
+				pushOrder(menu[page * 5 + 2]);
 		}
 		if (d > 100){
 			setD(0);
-			pushOrder(menu[page * 5 + 3]);
+			if(menu.length > page*5+3)
+				pushOrder(menu[page * 5 + 3]);
 		}
 		if (e > 100){
 			setE(0);
-			pushOrder(menu[page * 5 + 4]);
+			if(menu.length > page*5+4)
+				pushOrder(menu[page * 5 + 4]);
 		}
 		if (clear > 100){
 			setClear(0);
