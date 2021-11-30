@@ -209,8 +209,53 @@ const menu2 = [
 
 const yangsik = [
 	{
-		name: "야앙식",
-		img: "짜장면.png",
+		name: "미트볼 스파게티",
+		img: "미트볼 스파게티.png",
+		cost: 550000
+	},
+	{
+		name: "까르보나라",
+		img: "까르보나라.png",
+		cost: 550000
+	},
+	{
+		name: "고르곤졸라",
+		img: "고르곤졸라.png",
+		cost: 550000
+	},
+	{
+		name: "페퍼로니 피자",
+		img: "페퍼로니 피자.png",
+		cost: 550000
+	},
+	{
+		name: "스테이크",
+		img: "스테이크.png",
+		cost: 550000
+	},
+	{
+		name: "연어 스테이크",
+		img: "연어 스테이크.png",
+		cost: 550000
+	},
+	{
+		name: "리코타치즈샐러드",
+		img: "리코타치즈샐러드.png",
+		cost: 550000
+	},
+	{
+		name: "감자튀김 중",
+		img: "감자튀김.png",
+		cost: 550000
+	},
+	{
+		name: "감자튀김 대",
+		img: "감자튀김.png",
+		cost: 550000
+	},
+	{
+		name: "수제버거",
+		img: "수제버거.png",
 		cost: 550000
 	},
 ];
@@ -438,7 +483,8 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				<div className="category">{(category == 1) ? ">" : ""}중식</div>
 				<div className="category">{(category == 2) ? ">" : ""}양식</div>
 				<div className="category">{(category == 3) ? ">" : ""}음료</div>
-				{category}
+				c:{category} <br/>
+				p:{page}
 			</div>
 
 			<div className="menupan">
