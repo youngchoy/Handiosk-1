@@ -11,16 +11,131 @@ import { dbService } from '../firebase.js';
 import { arrayOf } from 'prop-types';
 
 // 5 * 3
+// const menu = [
+// 	{
+// 		name: "빅맥",
+// 		img: "burger.png",
+// 		cost: 5900
+// 	},
+// 	{
+// 		name: "짜장면",
+// 		img: "짜장면.png",
+// 		cost: 5500
+// 	},
+// 	{
+// 		name: "김밥",
+// 		img: "김밥.png",
+// 		cost: 2000
+// 	},
+// 	{
+// 		name: "피자",
+// 		img: "피자.png",
+// 		cost: 14000
+// 	},
+// 	{
+// 		name: "라면",
+// 		img: "라면.png",
+// 		cost: 3000
+// 	},
+// 	//
+// 	{
+// 		name: "아메리카노",
+// 		img: "아메리카노.png",
+// 		cost: 4000
+// 	},
+// 	{
+// 		name: "빅맥",
+// 		img: "burger.png",
+// 		cost: 5900
+// 	},
+// 	{
+// 		name: "아메리카노",
+// 		img: "아메리카노.png",
+// 		cost: 4000
+// 	},
+// 	{
+// 		name: "라면",
+// 		img: "라면.png",
+// 		cost: 3000
+// 	},
+// 	{
+// 		name: "아메리카노",
+// 		img: "아메리카노.png",
+// 		cost: 4000
+// 	},
+// 	//
+// 	{
+// 		name: "빅맥",
+// 		img: "burger.png",
+// 		cost: 5900
+// 	},
+// 	{
+// 		name: "짜장면",
+// 		img: "짜장면.png",
+// 		cost: 5500
+// 	},
+// 	{
+// 		name: "아메리카노",
+// 		img: "아메리카노.png",
+// 		cost: 4000
+// 	},
+// 	{
+// 		name: "피자",
+// 		img: "피자.png",
+// 		cost: 14000
+// 	},
+// 	{
+// 		name: "라면",
+// 		img: "라면.png",
+// 		cost: 3000
+// 	}
+// ];
+
 const menu = [
 	{
-		name: "빅맥",
-		img: "burger.png",
-		cost: 5900
+		name: "김치찌개 (소)",
+		img: "김치찌개.png",
+		cost: 6000
 	},
 	{
-		name: "짜장면",
-		img: "짜장면.png",
+		name: "김치찌개 (중)",
+		img: "김치찌개.png",
+		cost: 7000
+	},
+	{
+		name: "김치찌개 (대)",
+		img: "김치찌개.png",
+		cost: 8000
+	},
+	{
+		name: "삼겹살",
+		img: "삼겹살.png",
+		cost: 7500
+	},
+	{
+		name: "목살",
+		img: "목살.png",
+		cost: 7800
+	},
+	{
+		name: "된장찌개",
+		img: "된장찌개.png",
+		cost: 7000
+	},
+	{
+		name: "돼지불고기",
+		img: "돼지불고기.png",
+		cost: 7000
+	},
+	{
+		name: "콩나물국밥",
+		img: "콩나물국밥.png",
 		cost: 5500
+	},
+	{
+		name: "감자탕",
+		img: "감자탕.png",
+		cost: 7000
 	},
 	{
 		name: "김밥",
@@ -28,66 +143,14 @@ const menu = [
 		cost: 2000
 	},
 	{
-		name: "피자",
-		img: "피자.png",
-		cost: 14000
+		name: "찜닭",
+		img: "찜닭.png",
+		cost: 15000
 	},
 	{
-		name: "라면",
-		img: "라면.png",
-		cost: 3000
-	},
-	//
-	{
-		name: "아메리카노",
-		img: "아메리카노.png",
-		cost: 4000
-	},
-	{
-		name: "빅맥",
-		img: "burger.png",
-		cost: 5900
-	},
-	{
-		name: "아메리카노",
-		img: "아메리카노.png",
-		cost: 4000
-	},
-	{
-		name: "라면",
-		img: "라면.png",
-		cost: 3000
-	},
-	{
-		name: "아메리카노",
-		img: "아메리카노.png",
-		cost: 4000
-	},
-	//
-	{
-		name: "빅맥",
-		img: "burger.png",
-		cost: 5900
-	},
-	{
-		name: "짜장면",
-		img: "짜장면.png",
-		cost: 5500
-	},
-	{
-		name: "아메리카노",
-		img: "아메리카노.png",
-		cost: 4000
-	},
-	{
-		name: "피자",
-		img: "피자.png",
-		cost: 14000
-	},
-	{
-		name: "라면",
-		img: "라면.png",
-		cost: 3000
+		name: "돼지국밥",
+		img: "돼지국밥.png",
+		cost: 6000
 	}
 ];
 
@@ -96,15 +159,113 @@ const menu2 = [
 		name: "짜장면",
 		img: "짜장면.png",
 		cost: 5500
+	},
+	{
+		name: "짜장면(곱빼기)",
+		img: "짜장면(곱빼기).png",
+		cost: 6500
+	},
+	{
+		name: "짬뽕",
+		img: "짬뽕.png",
+		cost: 6500
+	},
+	{
+		name: "쟁반짜장",
+		img: "쟁반짜장.png",
+		cost: 9000
+	},
+	{
+		name: "볶음밥",
+		img: "볶음밥.png",
+		cost: 7000
+	},
+	{
+		name: "탕수육 (소)",
+		img: "탕수육.png",
+		cost: 11000
+	},
+	{
+		name: "탕수육 (중)",
+		img: "탕수육.png",
+		cost: 12000
+	},
+	{
+		name: "탕수육 (대)",
+		img: "탕수육.png",
+		cost: 13000
+	},
+	{
+		name: "멘보샤",
+		img: "멘보샤.png",
+		cost: 13000
+	},
+	{
+		name: "유린기",
+		img: "유린기.png",
+		cost: 18000
 	}
-]
+];
+
+const yangsik = [
+	{
+		name: "야앙식",
+		img: "짜장면.png",
+		cost: 550000
+	},
+];
 
 const menu3 = [
 	{
-		name: "김밥",
-		img: "김밥.png",
-		cost: 2000
-	}
+		name: "HOT 아메리카노",
+		img: "뜨아.png",
+		cost: 3900
+	},
+	{
+		name: "ICE 아메리카노",
+		img: "아아.png",
+		cost: 3900
+	},
+	{
+		name: "HOT 카페라떼",
+		img: "아라떼.png",
+		cost: 4100
+	},
+	{
+		name: "ICE 카페라떼",
+		img: "뜨라떼.png",
+		cost: 4100
+	},
+	{
+		name: "HOT 카페모카",
+		img: "아모카.png",
+		cost: 4400
+	},
+	{
+		name: "HOT 카페모카",
+		img: "뜨모카.png",
+		cost: 4400
+	},
+	{
+		name: "아이스티",
+		img: "아이스티.png",
+		cost: 2800
+	},
+	{
+		name: "콜드브루",
+		img: "콜드브루.png",
+		cost: 3500
+	},
+	{
+		name: "아인슈페너",
+		img: "아인슈페너.png",
+		cost: 6000
+	},
+	{
+		name: "녹차라떼",
+		img: "녹차라떼.png",
+		cost: 5500
+	},
 ]
 
 const order = [
@@ -123,7 +284,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 	const [good, setGood] = useState(0);
 
 	// 메뉴판 페이지, 카테고리 state
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(0);
 	const [category, setCategory] = useState(0);
 
 	const getMenu = async() => {
@@ -172,6 +333,9 @@ const Three = ({socket, setPageNum, setOrder}) => {
 		});
 		return total;
 	}
+	// const fuck = () => {
+	// 	console.log(category);
+	// }
 	useEffect(async() => {
 		getMenu();
 		// 인식되지 않고있는 것들은 0.5초마다 1씩 낮춘다.
@@ -211,22 +375,22 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			}
 			else if (message.data == "scroll left"){
 				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
-				if (page == 0)setPage(2);
+				if (page == 0)setPage(v=>v+2);
 				else setPage(v=>v+1);
 			} else if (message.data == "scroll right"){
 				// page를 오른쪽으로 넘깁니다.
-				if (page == 2)setPage(0);
+				if (page == 2)setPage(v=>v-2);
 				else setPage(v=>v-1);
 			}
 			else if (message.data == "scroll up"){
 				// 위 카테고리로 넘깁니다.
-				if (category == 0)setCategory(4);
-				else setCategory(v=>v+1);
+				if (category === 0)setCategory(4);
+				else setCategory(v=>v-1);
 			}
 			else if (message.data == "scroll down"){
 				// 아래 카테고리로 넘깁니다.
-				if (category == 4)setCategory(0);
-				else setCategory(v=>v-1);
+				if (category === 4)setCategory(0);
+				else setCategory(v=>v+1);
 			}
 		});
 	  }, []);
@@ -274,6 +438,7 @@ const Three = ({socket, setPageNum, setOrder}) => {
 				<div className="category">{(category == 1) ? ">" : ""}중식</div>
 				<div className="category">{(category == 2) ? ">" : ""}양식</div>
 				<div className="category">{(category == 3) ? ">" : ""}음료</div>
+				{category}
 			</div>
 
 			<div className="menupan">
@@ -289,7 +454,9 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					(page * 5 <=idx) && (idx < 5 * (page+1)) && <Food key={idx}
 					name={one.name} img={one.img} cost={one.cost}/>
 				))}
+
 			</div>
+
 			<div className="icons">
 				<div className="icon">
 					{/* <Icon img="1.png"/> */}
@@ -309,10 +476,10 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					{/* <img src="2.png"/>
 					<ProgressBar completed={b} /> */}
 					<div style={{ width: 65, height: 65 }}>
-						<CircularProgressbarWithChildren value={a}>
-							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+						<CircularProgressbarWithChildren value={b}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="2.png" alt="doge" />
 							<div style={{ fontSize: 12, marginTop: -5 }}>
-								<strong>{a}%</strong>
+								<strong>{b}%</strong>
 							</div>
 						</CircularProgressbarWithChildren>
 					</div>
@@ -322,10 +489,10 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					{/* <img src="3.png"/>
 					<ProgressBar completed={c} /> */}
 					<div style={{ width: 65, height: 65 }}>
-						<CircularProgressbarWithChildren value={a}>
-							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+						<CircularProgressbarWithChildren value={c}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="3.png" alt="doge" />
 							<div style={{ fontSize: 12, marginTop: -5 }}>
-								<strong>{a}%</strong>
+								<strong>{c}%</strong>
 							</div>
 						</CircularProgressbarWithChildren>
 					</div>
@@ -335,10 +502,10 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					{/* <img src="4.png"/>
 					<ProgressBar completed={d} /> */}
 					<div style={{ width: 65, height: 65 }}>
-						<CircularProgressbarWithChildren value={a}>
-							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+						<CircularProgressbarWithChildren value={d}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="4.png" alt="doge" />
 							<div style={{ fontSize: 12, marginTop: -5 }}>
-								<strong>{a}%</strong>
+								<strong>{d}%</strong>
 							</div>
 						</CircularProgressbarWithChildren>
 					</div>
@@ -348,10 +515,10 @@ const Three = ({socket, setPageNum, setOrder}) => {
 					{/* <img src="5.png"/>
 					<ProgressBar completed={e} /> */}
 					<div style={{ width: 65, height: 65 }}>
-						<CircularProgressbarWithChildren value={a}>
-							<img style={{ width: 65, height: 65, marginTop: -5 }} src="1.png" alt="doge" />
+						<CircularProgressbarWithChildren value={e}>
+							<img style={{ width: 65, height: 65, marginTop: -5 }} src="5.png" alt="doge" />
 							<div style={{ fontSize: 12, marginTop: -5 }}>
-								<strong>{a}%</strong>
+								<strong>{e}%</strong>
 							</div>
 						</CircularProgressbarWithChildren>
 					</div>
