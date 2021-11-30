@@ -418,14 +418,14 @@ const Three = ({socket, setPageNum, setOrder}) => {
 			} else if (message.data == "thumbs up"){
 				setGood(v=>v+1);
 			}
-			else if (message.data == "scroll left1"){
+			else if (message.data == "scroll left"){
 				// page를 왼쪽으로 넘깁니다. 아직max pagenum이 없다.
 				setPage(v => (v<=0) ? setPage(2) : setPage(v-1));
-			} else if (message.data == "scroll right1"){
+			} else if (message.data == "scroll right"){
 				// page를 오른쪽으로 넘깁니다.
 				setPage(v => (v>=2) ? setPage(0) : setPage(v+1));
 			}
-			else if (message.data == "scroll left"){
+			else if (message.data == "scroll up"){
 				// 위 카테고리로 넘깁니다.
 				setCategory(v => (v<=0) ? setCategory(3) : setCategory(v-1));
 			}
