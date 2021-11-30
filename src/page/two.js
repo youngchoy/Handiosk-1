@@ -20,8 +20,8 @@ const Two = ({socket, setPageNum}) => {
 		});
 		setInterval(()=>{
 			//setA(v=>(v>0) ? v-1 : v);
-			setB(v=>(v>0) ? v-1 : v);
-			setC(v=>(v>0) ? v-1 : v);
+			setB(v=>(v>0) ? v-2 : v);
+			setC(v=>(v>0) ? v-2 : v);
 		}, 500);
 	}, []);
 
