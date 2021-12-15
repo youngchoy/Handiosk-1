@@ -82,13 +82,13 @@
 }
 
 .ablock {
-	background-color: white;
+	background-color: rgb(105, 105, 105);
 	align-items: center;
 	width: 20%;
 }
 
 .bblock {
-	background-color: gray;
+	background-color: rgb(204, 204, 204);
 	align-items: center;
 	width: 20%;
 }
